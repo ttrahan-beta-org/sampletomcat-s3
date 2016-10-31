@@ -13,13 +13,13 @@
 		<docker.image.prefix>ttrahan</docker.image.prefix>
 	</properties>
 
-	<distributionManagement>
+	<!--<distributionManagement>
 			<snapshotRepository>
 					<id>snapshots</id>
 					<name>shipdemo-snapshots</name>
 					<url>https://shipdemo.jfrog.io/shipdemo/libs-snapshot-local</url>
 			</snapshotRepository>
-	</distributionManagement>
+	</distributionManagement> -->
 
 	<dependencies>
 		<dependency>
