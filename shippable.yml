@@ -7,3 +7,4 @@ build:
   ci:
     - mkdir -p shippable/testresults && mkdir -p shippable/codecoverage
     - mvn -B clean cobertura:cobertura install
+    - ls -al $SHIPPABLE_BUILD_DIR/target
