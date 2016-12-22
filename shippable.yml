@@ -12,13 +12,14 @@ build:
 
   ci:
     - sudo wget http://mirrors.ibiblio.org/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+    - wget http://138.197.80.53:8080/docs/appdev/sample/sample.war
     - sudo tar xzf apache-maven-3.3.9-bin.tar.gz -C /usr/local && rm -f apache-maven-3.3.9-bin.tar.gz
     - ln -fs /usr/local/apache-maven-$3.3.9/bin/mvn /usr/bin
     - echo "export PATH=$PATH:/usr/local/apache-maven-3.3.9/bin" >> $HOME/.bashrc
     - mkdir -p shippable/testresults && mkdir -p shippable/codecoverage
     - /usr/local/apache-maven-3.3.9/bin/mvn -q -B clean cobertura:cobertura install
     - ls -al $SHIPPABLE_BUILD_DIR/target
-    - jfrog rt u $SHIPPABLE_BUILD_DIR/target/HelloWorld.war builds/HelloWorld.war
+    - jfrog rt u $SHIPPABLE_BUILD_DIR/sample.war builds/sample.war
 
 integrations:
   hub:
