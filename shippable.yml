@@ -4,7 +4,19 @@ jdk:
   - oraclejdk8
 
 build:
+  pre_ci_boot:
+    image_name: drydock/u14
+    image_tag: tip
+    pull: false
+    options: '--privileged=true --net=bridge'
+
   ci:
     - mkdir -p shippable/testresults && mkdir -p shippable/codecoverage
     - mvn -B clean cobertura:cobertura install
     - ls -al $SHIPPABLE_BUILD_DIR/target
+    - jfrog rt u $SHIPPABLE_BUILD_DIR/target/HelloWorld.war builds/HelloWorld.war
+
+integrations:
+  hub:
+    - integrationName: avinci-jf
+      type: artifactory
