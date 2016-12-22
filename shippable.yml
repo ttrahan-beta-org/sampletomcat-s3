@@ -16,7 +16,7 @@ build:
     - ln -fs /usr/local/apache-maven-$3.3.9/bin/mvn /usr/bin
     - echo "export PATH=$PATH:/usr/local/apache-maven-3.3.9/bin" >> $HOME/.bashrc
     - mkdir -p shippable/testresults && mkdir -p shippable/codecoverage
-    - /usr/local/apache-maven-3.3.9/bin/mvn -B clean cobertura:cobertura install
+    - /usr/local/apache-maven-3.3.9/bin/mvn -q -B clean cobertura:cobertura install
     - ls -al $SHIPPABLE_BUILD_DIR/target
     - jfrog rt u $SHIPPABLE_BUILD_DIR/target/HelloWorld.war builds/HelloWorld.war
 
@@ -24,3 +24,10 @@ integrations:
   hub:
     - integrationName: avinci-jf
       type: artifactory
+
+  notifications:
+    - integrationName: demo-jar-trg
+      type: webhook
+      payload:
+        - versionName=$BUILD_NUMBER
+      on_success: always
