@@ -4,13 +4,8 @@ jdk:
   - oraclejdk8
 
 build:
-  pre_ci_boot:
-    image_name: drydock/u14
-    image_tag: tip
-    pull: false
-    options: '--privileged=true --net=bridge'
-
   ci:
+    - curl -fL https://getcli.jfrog.io | sh
     - mkdir -p shippable/testresults && mkdir -p shippable/codecoverage
     - mvn -B clean cobertura:cobertura install
     - ls -al $SHIPPABLE_BUILD_DIR/target
