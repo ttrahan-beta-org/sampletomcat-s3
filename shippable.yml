@@ -5,12 +5,16 @@ jdk:
 
 build:
   pre_ci_boot:
-    image_name: drydock/u14jav
+    image_name: drydock/u14
     image_tag: tip
     pull: false
     options: '--privileged=true --net=bridge'
 
   ci:
+    - sudo wget http://mirrors.ibiblio.org/apache/maven/maven-3.3.9/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+    - sudo tar xzf apache-maven-3.3.9-bin.tar.gz -C /usr/local && rm -f apache-maven-3.3.9-bin.tar.gz
+    - ln -fs /usr/local/apache-maven-$3.3.9/bin/mvn /usr/bin
+    - echo "export PATH=$PATH:/usr/local/apache-maven-3.3.9/bin" >> $HOME/.bashrc
     - jfrog rt dl pages/data.json
     - mkdir -p shippable/testresults && mkdir -p shippable/codecoverage
     - mvn -B clean cobertura:cobertura install
@@ -21,3 +25,4 @@ integrations:
   hub:
     - integrationName: avinci-jf
       type: artifactory
+      
