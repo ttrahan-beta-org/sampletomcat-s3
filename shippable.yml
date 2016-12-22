@@ -15,9 +15,9 @@ build:
     - sudo tar xzf apache-maven-3.3.9-bin.tar.gz -C /usr/local && rm -f apache-maven-3.3.9-bin.tar.gz
     - ln -fs /usr/local/apache-maven-$3.3.9/bin/mvn /usr/bin
     - echo "export PATH=$PATH:/usr/local/apache-maven-3.3.9/bin" >> $HOME/.bashrc
-    - jfrog rt dl pages/data.json
     - mkdir -p shippable/testresults && mkdir -p shippable/codecoverage
-    - /usr/bin/mvn -B clean cobertura:cobertura install
+    - . .bashrc
+    - mvn -B clean cobertura:cobertura install
     - ls -al $SHIPPABLE_BUILD_DIR/target
     - jfrog rt u $SHIPPABLE_BUILD_DIR/target/HelloWorld.war builds/HelloWorld.war
 
