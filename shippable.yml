@@ -20,6 +20,7 @@ build:
     - /usr/local/apache-maven-3.3.9/bin/mvn -q -B clean cobertura:cobertura install
     - ls -al $SHIPPABLE_BUILD_DIR/target
     - jfrog rt u $SHIPPABLE_BUILD_DIR/sample.war builds/sample.war
+    - ls $SHIPPABLE_BUILD_DIR/target
 
 integrations:
   hub:
@@ -32,6 +33,3 @@ integrations:
       payload:
         - versionName=$BUILD_NUMBER
       on_success: always
-
-
-
