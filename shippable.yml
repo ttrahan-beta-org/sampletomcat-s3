@@ -19,7 +19,7 @@ build:
     - mkdir -p shippable/testresults && mkdir -p shippable/codecoverage
     - /usr/local/apache-maven-3.3.9/bin/mvn -q -B clean cobertura:cobertura install
     - ls -al $SHIPPABLE_BUILD_DIR/target
-    - jfrog rt u $SHIPPABLE_BUILD_DIR/HelloWorld.war builds/HelloWorld.war
+    - jfrog rt u $SHIPPABLE_BUILD_DIR/target/HelloWorld.war builds/HelloWorld.war
     - ls $SHIPPABLE_BUILD_DIR/target
 
 integrations:
