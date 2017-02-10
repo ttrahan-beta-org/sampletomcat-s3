@@ -27,7 +27,7 @@ integrations:
       type: artifactory
 
   notifications:
-    - integrationName: demo-jwar-trg
+    - integrationName: demo-war-trg
       type: webhook
       payload:
         - versionName=$BUILD_NUMBER
