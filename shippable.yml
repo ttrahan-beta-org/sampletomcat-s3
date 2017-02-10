@@ -26,9 +26,9 @@ integrations:
     - integrationName: avinci-jf
       type: artifactory
 
-#  notifications:
-#    - integrationName: demo-jar-trg
-#      type: webhook
-#      payload:
-#        - versionName=$BUILD_NUMBER
-#      on_success: always
+  notifications:
+    - integrationName: demo-jwar-trg
+      type: webhook
+      payload:
+        - versionName=$BUILD_NUMBER
+      on_success: always
