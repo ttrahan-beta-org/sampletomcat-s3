@@ -1,4 +1,4 @@
-### Sample Java-Tomcat helloworld app
+### Sample Java-Tomcat helloworld app!
 
 Demonstrates:
 * Java app running on Apache Tomcat server in Docker container
