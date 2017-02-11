@@ -23,11 +23,11 @@ build:
 
 integrations:
   hub:
-    - integrationName: avinci-jf
+    - integrationName: demo-jf
       type: artifactory
 
   notifications:
-    - integrationName: demo-war-trg
+    - integrationName: demo-war
       type: webhook
       payload:
         - versionName=$BUILD_NUMBER
