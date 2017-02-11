@@ -27,7 +27,7 @@ integrations:
       type: artifactory
 
   notifications:
-    - integrationName: demo-war
+    - integrationName: demo-hook
       type: webhook
       payload:
         - versionName=$BUILD_NUMBER
