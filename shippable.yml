@@ -6,6 +6,7 @@ jdk:
 env:
   global:
     - S3_BUCKET=shipdemo-java-s3-ec2
+    - secure: WUyh0be7NT0aJRA0O22fskwKzKAyZTRCkKWyzTlOD7sUOcILly5OUL1BgYN8ippKNIh9dQmicL8MFXup+BxNUvrJfNjYr+JkO6F0j8o6bRyfEORrjs9pSyKcJaf/fLWd8TDBHy9Jpq6HlHhn8LTYVpEarIfl5/LEgMvdaijtZ6B7wm0hyQpC/DsKcAkXRNE/w/hB3tlqkEUXHvq7tcIDGu+wCXqkVu9RB3Bp14EneGFm1LFMF525BfNpgyjViscY08b1HW0KdsAoq30YuR44J0556iWGzp3K67JcM15JpTnW4m2xCVk4305XjZI/kxUzxNACpYHiqvrzSyUOPR1iaw== 
 
 build:
   pre_ci_boot:
@@ -23,6 +24,12 @@ build:
     - /usr/local/apache-maven-3.3.9/bin/mvn -q -B clean cobertura:cobertura install
     - ls -al $SHIPPABLE_BUILD_DIR/target
     - aws s3 cp $SHIPPABLE_BUILD_DIR/target/HelloWorld.war s3://$S3_BUCKET/builds/$BRANCH.$BUILD_NUMBER/HelloWorld.war
+    - curl --request POST \
+        --url https://api.shippable.com/versions \
+        --header 'authorization: apiToken $API_TOKEN' \
+        --header 'cache-control: no-cache' \
+        --header 'content-type: application/json' \
+        --data '{\n  "propertyBag": {\n    "params": {\n      "LATEST_BUILD": "$BRANCH.$BUILD_NUMBER"\n    }\n  },\n  "resourceId": 12193,\n  "projectId": "586e879b3b5313100045e103"\n}'
 
 integrations:
   hub:
@@ -30,8 +37,8 @@ integrations:
       type: ecr
 
   notifications:
-    # - integrationName: demo-hook
+    # - integrationName: demo-war-hook
     #   type: webhook
     #   payload:
-    #     - versionName=$BUILD_NUMBER
+    #     - versionName=$BRANCH.$BUILD_NUMBER/HelloWorld.war
     #   on_success: always
