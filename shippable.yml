@@ -15,7 +15,6 @@ build:
     options: '--privileged=true --net=bridge'
 
   ci:
-    - sudo install awscli 
     - sudo wget http://www-us.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
     - sudo tar xzf apache-maven-3.3.9-bin.tar.gz -C /usr/local && rm -f apache-maven-3.3.9-bin.tar.gz
     - ln -fs /usr/local/apache-maven-$3.3.9/bin/mvn /usr/bin
@@ -24,19 +23,16 @@ build:
     - /usr/local/apache-maven-3.3.9/bin/mvn -q -B clean cobertura:cobertura install
     - ls -al $SHIPPABLE_BUILD_DIR/target
     - aws s3 cp $SHIPPABLE_BUILD_DIR/target/HelloWorld.war s3://$S3_BUCKET/builds/HelloWorld.war
-    - jfrog rt u $SHIPPABLE_BUILD_DIR/target/HelloWorld.war builds/HelloWorld.war
     - ls $SHIPPABLE_BUILD_DIR/target
 
 integrations:
   hub:
-    - integrationName: demo-jf
-      type: artifactory
     - integrationName: ttrahan-ecr
       type: ecr
 
   notifications:
-    - integrationName: demo-hook
-      type: webhook
-      payload:
-        - versionName=$BUILD_NUMBER
-      on_success: always
+    # - integrationName: demo-hook
+    #   type: webhook
+    #   payload:
+    #     - versionName=$BUILD_NUMBER
+    #   on_success: always
