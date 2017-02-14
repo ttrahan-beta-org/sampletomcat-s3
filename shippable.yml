@@ -6,7 +6,7 @@ jdk:
 env:
   global:
     - S3_BUCKET=shipdemo-java-s3-ec2
-    - secure: WUyh0be7NT0aJRA0O22fskwKzKAyZTRCkKWyzTlOD7sUOcILly5OUL1BgYN8ippKNIh9dQmicL8MFXup+BxNUvrJfNjYr+JkO6F0j8o6bRyfEORrjs9pSyKcJaf/fLWd8TDBHy9Jpq6HlHhn8LTYVpEarIfl5/LEgMvdaijtZ6B7wm0hyQpC/DsKcAkXRNE/w/hB3tlqkEUXHvq7tcIDGu+wCXqkVu9RB3Bp14EneGFm1LFMF525BfNpgyjViscY08b1HW0KdsAoq30YuR44J0556iWGzp3K67JcM15JpTnW4m2xCVk4305XjZI/kxUzxNACpYHiqvrzSyUOPR1iaw== 
+    - secure: ZXcgGQFDiKi7wyx14u0vduSCKD/mYunZVBZEjWozZs6mz7ff3GogbPrxH9usQqhm8/T/acwAMUJestemA2a6NKMGaJ8JatR8FZbQwpfR3D4qNiVjmySbos3QaC5LSE53tqvSAdHkpk3nM//9T/LM14LkXWWkbWqJbGKsNCcZA5XFWsABz9cma8g6b8QIoQZvpbGrIyrjAnL0cNAy6VaPF0nwwDlHPA4xxLDQo0md8ksr83QCavhf8vDp7jO+79mAxeAtUjbnda4fpWxmeo/OHItkarQUcfAWhzHN4R3xZRZxV0+RJoN4/3IjhlDHZ11ydR88L/U+lLH3/9ueLrKajA==
 
 build:
   pre_ci_boot:
