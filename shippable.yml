@@ -25,11 +25,11 @@ build:
     - ls -al $SHIPPABLE_BUILD_DIR/target
     - aws s3 cp $SHIPPABLE_BUILD_DIR/target/HelloWorld.war s3://$S3_BUCKET/builds/$BRANCH.$BUILD_NUMBER/HelloWorld.war
     - >
-      curl --request POST
-        --url https://api.shippable.com/versions
-        --header 'authorization: apiToken $API_TOKEN'
-        --header 'cache-control: no-cache'
-        --header 'content-type: application/json'
+      curl --request POST \
+        --url https://api.shippable.com/versions \
+        --header 'authorization: apiToken $API_TOKEN' \
+        --header 'cache-control: no-cache' \
+        --header 'content-type: application/json' \
         --data '{\n  "propertyBag": {\n    "params": {\n      "LATEST_BUILD": "$BRANCH.$BUILD_NUMBER"\n    }\n  },\n  "resourceId": 12193,\n  "projectId": "586e879b3b5313100045e103"\n}'
 
 integrations:
