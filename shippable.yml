@@ -19,16 +19,17 @@ build:
     - sudo wget http://www-us.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
     - sudo tar xzf apache-maven-3.3.9-bin.tar.gz -C /usr/local && rm -f apache-maven-3.3.9-bin.tar.gz
     - ln -fs /usr/local/apache-maven-$3.3.9/bin/mvn /usr/bin
-    - echo "export PATH=$PATH:/usr/local/apache-maven-3.3.9/bin" >> $HOME/.bashrc
+    - echo "export PATH=$PATH:/usr/local/apache-maven-3.3.9/bin"> $HOME/.bashrc
     - mkdir -p shippable/testresults && mkdir -p shippable/codecoverage
     - /usr/local/apache-maven-3.3.9/bin/mvn -q -B clean cobertura:cobertura install
     - ls -al $SHIPPABLE_BUILD_DIR/target
     - aws s3 cp $SHIPPABLE_BUILD_DIR/target/HelloWorld.war s3://$S3_BUCKET/builds/$BRANCH.$BUILD_NUMBER/HelloWorld.war
-    - curl --request POST >
-        --url https://api.shippable.com/versions >
-        --header 'authorization: apiToken $API_TOKEN' >
-        --header 'cache-control: no-cache' >
-        --header 'content-type: application/json' >
+    - >
+      curl --request POST
+        --url https://api.shippable.com/versions
+        --header 'authorization: apiToken $API_TOKEN'
+        --header 'cache-control: no-cache'
+        --header 'content-type: application/json'
         --data '{\n  "propertyBag": {\n    "params": {\n      "LATEST_BUILD": "$BRANCH.$BUILD_NUMBER"\n    }\n  },\n  "resourceId": 12193,\n  "projectId": "586e879b3b5313100045e103"\n}'
 
 integrations:
